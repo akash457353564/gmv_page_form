@@ -1,0 +1,23 @@
+{
+  "name": "gmv_page_form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akash457353564/gmv_page_form.git"
+  },
+  "author": "Akash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akash457353564/gmv_page_form/issues"
+  },
+  "homepage": "https://github.com/akash457353564/gmv_page_form#readme",
+  "dependencies": {
+    "parcel": "^2.8.3"
+  }
+}
