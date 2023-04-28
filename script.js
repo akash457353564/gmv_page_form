@@ -1,3 +1,6 @@
+let userName;
+let userWeddingDate;
+let userPhone;
 
 const gmv_form = document.querySelector('#gmv_v3')
 
@@ -22,6 +25,12 @@ const otp_form_block = document.querySelector('.otp_form_block');
 const validating_otp_block = document.querySelector('.validating_otp_block');
 const succ_block = document.querySelector('.success_block');
 
+const final_name = document.querySelector('#final_name');
+const final_date = document.querySelector('#final_date');
+const final_num = document.querySelector('#final_num')
+
+const final_submit_btn =document.querySelector('#final_form_submit')
+
 wedding_date.type = 'date'
 
 user_name.addEventListener('input', () => {
@@ -44,6 +53,10 @@ submit_btn.addEventListener('click', (e) => {
         e.preventDefault()
         phn_err.style.display = 'flex'
         phn_err.textContent = 'Please enter a valid phone number'
+    } else {
+        userName = user_name.value;
+        userWeddingDate = wedding_date.value;
+        userPhone = user_mob.value;
     }
 })
 
@@ -69,7 +82,6 @@ const send_otp = function () {
     request.send(data);
 }
 
-let verify_otp_status;
 
 
 
@@ -79,50 +91,76 @@ gmv_form.addEventListener('submit', () => {
     document.querySelector('.sent_otp_to_txt').textContent = `We have sent OTP to ${user_mob.value}`
 })
 
-otp_sub_btn.addEventListener('click', (e) => {
-    if (!otp_field.value) {
-        e.preventDefault()
-        otp_err.style.display = 'flex'
-    } else if (otp_field.value) {
-        e.preventDefault()
-        otp_form_block.style.display = 'none'
-        validating_otp_block.style.display = 'flex'
+let verify_otp_status;
 
-        let data = JSON.stringify(
-            {
-                "mobile": `${Number(user_mob.value)}`,
-                "isd_code": "91",
-                "otp": `${otp_field.value}`
-            }
-        )
+function callback(status){
+    verify_otp_status = status
+}
 
-        let request = new XMLHttpRequest();
-        let endPoint = new URL(`https://api.betterhalf.ai/v2/auth/wedding-store/otp/verify/`);
-        let url = endPoint.toString();
-        request.open('POST', url, true)
-        request.setRequestHeader("Content-Type", "application/json");
-
-        request.onload = function () {
-            verify_otp_status = request.status
-
-            if (verify_otp_status == 200) {
-                validating_otp_block.style.display = 'none'
-                succ_block.style.display = 'flex'
-                console.log('Correct')
-            } else {
-                validating_otp_block.style.display = 'none'
-                otp_form_block.style.display = 'flex'
-                otp_err.textContent = 'Please enter correct OTP'
-                otp_err.style.display = 'flex'
-            }
+let verify_otp = function(callback){
+    let data = JSON.stringify(
+        {
+            "mobile": `${Number(user_mob.value)}`,
+            "isd_code": "91",
+            "otp": `${Number(otp_field.value)}`
         }
+    )
 
-        request.send(data);
+    let request = new XMLHttpRequest();
+    let endPoint = new URL(`https://api.betterhalf.ai/v2/auth/wedding-store/otp/verify/`);
+    let url = endPoint.toString();
+    request.open('POST', url, true)
+    request.setRequestHeader("Content-Type", "application/json");
+
+    request.onload = function () {
+        callback(request.status)
 
     }
+    request.send(data);
+}
+
+
+
+
+
+otp_sub_btn.addEventListener('click', (e) => {
+    e.preventDefault()
+    verify_otp(callback)
+
+    if (!otp_field.value) {
+        //e.preventDefault()
+        otp_err.style.display = 'flex'
+    }  
+
+    
+
+    setTimeout(function(){
+         if(otp_field.value && verify_otp_status == 200){
+             console.log('IN 200:', verify_otp_status)
+             otp_form_block.style.display = 'none'
+             validating_otp_block.style.display = 'none'
+             succ_block.style.display = 'flex'
+
+             final_name.value = userName
+             final_num.value =  userPhone
+             final_date.value = userWeddingDate
+            final_submit_btn.click()
+             
+            
+        } else if(otp_field.value && verify_otp_status != 200){
+            console.log('IN !200',verify_otp_status)
+            //e.preventDefault()
+            validating_otp_block.style.display = 'none'
+                    otp_form_block.style.display = 'flex'
+                    otp_err.textContent = 'Please enter correct OTP'
+                    otp_err.style.display = 'flex'
+        }
+    }, 1000)
+
+    
 })
 
-///////SLIDER CODE//////////
+/////////////////////////////////////////////////////////SLIDER CODE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function venue_vendor() {
 
