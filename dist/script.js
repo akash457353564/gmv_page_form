@@ -651,11 +651,14 @@ let verify_otp = function(callback) {
 otp_sub_btn.addEventListener("click", (e)=>{
     e.preventDefault();
     verify_otp(callback);
-    if (!otp_field.value) //e.preventDefault()
-    otp_err.style.display = "flex";
+    validating_otp_block.style.display = "flex";
+    if (!otp_field.value) {
+        validating_otp_block.style.display = "none";
+        otp_err.style.display = "flex";
+    }
     setTimeout(function() {
         if (otp_field.value && verify_otp_status == 200) {
-            console.log("IN 200:", verify_otp_status);
+            //console.log('IN 200:', verify_otp_status)
             otp_form_block.style.display = "none";
             validating_otp_block.style.display = "none";
             succ_block.style.display = "flex";
@@ -664,8 +667,7 @@ otp_sub_btn.addEventListener("click", (e)=>{
             final_date.value = userWeddingDate;
             final_submit_btn.click();
         } else if (otp_field.value && verify_otp_status != 200) {
-            console.log("IN !200", verify_otp_status);
-            //e.preventDefault()
+            //console.log('IN !200',verify_otp_status)
             validating_otp_block.style.display = "none";
             otp_form_block.style.display = "flex";
             otp_err.textContent = "Please enter correct OTP";
