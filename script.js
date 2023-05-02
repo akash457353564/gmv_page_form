@@ -105,7 +105,7 @@ function callback(status){
 let verify_otp = function(callback){
     let data = JSON.stringify(
         {
-            "mobile": `${Number(user_mob.value)}`,
+            "mobile": `${Number(user_mob.value) || Number(user_mob2.value)}`,
             "isd_code": "91",
             "otp": `${Number(otp_field.value)}`
         }
@@ -166,6 +166,82 @@ otp_sub_btn.addEventListener('click', (e) => {
 
     
 })
+
+/////////////////////////////////////////////////////////////////POP UP FORM/////////////////////////////////////////////////////////////////
+
+const country_code2 = document.querySelector('#country_code_2')
+country_code2.value = `+91`
+country_code2.setAttribute('readonly', ' ')
+
+const gmv_form2 = document.querySelector('#gmv_v3_2')
+
+const user_name2 = document.querySelector('#name_field_2');
+const user_mob2 = document.querySelector('#mob_num_2');
+const wedding_date2 = document.querySelector('#wedding_date_2')
+wedding_date2.type = 'date'
+
+const submit_btn2 = document.querySelector('#form_submit_btn_2');
+
+const name_err2 = document.querySelector('#name_err_2');
+const phn_err2 = document.querySelector('#phn_err_2');
+
+user_name2.addEventListener('input', () => {
+    name_err2.style.display = 'none'
+})
+
+user_mob2.addEventListener('input', () => {
+    phn_err2.style.display = 'none'
+})
+
+submit_btn2.addEventListener('click', (e) => {
+    console.log('here')
+    const alphabets = /^[a-zA-Z]+$/
+    if (!user_name2.value) {
+        e.preventDefault()
+        name_err2.style.display = 'flex'
+    } else if (!user_mob2.value) {
+        e.preventDefault()
+        phn_err2.style.display = 'flex'
+    } else if (user_mob2.value.match(alphabets) || user_mob2.value.length > 10 || user_mob2.value.length < 10 || user_mob2.value.startsWith('1') || user_mob2.value.startsWith('2') || user_mob2.value.startsWith('3') || user_mob2.value.startsWith('4') || user_mob2.value.startsWith('5')) {
+        e.preventDefault()
+        phn_err2.style.display = 'flex'
+        phn_err2.textContent = 'Please enter a valid phone number'
+    } else {
+        userName = user_name2.value;
+        userWeddingDate = wedding_date2.value;
+        userPhone = user_mob2.value;
+    }
+})
+
+const send_otp2 = function () {
+    let data = JSON.stringify(
+        {
+            "isd_code": "91",
+            "mobile": `${Number(user_mob2.value)}`,
+            "medium": "SMS"
+        }
+    )
+
+    let request = new XMLHttpRequest();
+    let endPoint = new URL(`https://api.betterhalf.ai/v2/auth/otp/send/`);
+    let url = endPoint.toString();
+    request.open('POST', url, true)
+    request.setRequestHeader("Content-Type", "application/json");
+
+    request.send(data);
+}
+
+
+gmv_form2.addEventListener('submit', () => {
+    document.querySelector('.pop_up-form-wrapper').style.display = 'none'
+    otp_modal.style.display = 'flex'
+    send_otp2()
+    document.querySelector('.sent_otp_to_txt').textContent = `We have sent OTP to ${user_mob2.value}`
+})
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////SLIDER CODE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
