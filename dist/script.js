@@ -560,6 +560,9 @@ function hmrAccept(bundle, id) {
 let userName;
 let userWeddingDate;
 let userPhone;
+const country_code = document.querySelector("#country_code");
+country_code.value = `+91`;
+country_code.setAttribute("readonly", " ");
 const gmv_form = document.querySelector("#gmv_v3");
 const user_name = document.querySelector("#name_field");
 const user_mob = document.querySelector("#mob_num");
@@ -675,7 +678,7 @@ function venue_vendor() {
     let splides = $(".venue_vendor");
     for(let i = 0, splideLength = splides.length; i < splideLength; i++)new Splide(splides[i], {
         // Desktop on down
-        perPage: 3,
+        perPage: 4,
         perMove: 1,
         focus: 0,
         type: "loop",
@@ -711,46 +714,6 @@ function venue_vendor() {
     }).mount();
 }
 venue_vendor();
-function decoration_vendor() {
-    let splides = $(".decoration_vendor");
-    for(let i = 0, splideLength = splides.length; i < splideLength; i++)new Splide(splides[i], {
-        // Desktop on down
-        perPage: 3,
-        perMove: 1,
-        focus: 0,
-        type: "loop",
-        gap: "2em",
-        arrows: "slider",
-        pagination: false,
-        speed: 600,
-        dragAngleThreshold: 30,
-        autoWidth: false,
-        rewind: true,
-        rewindSpeed: 400,
-        waitForTransition: false,
-        updateOnMove: true,
-        trimSpace: false,
-        autoplay: true,
-        breakpoints: {
-            991: {
-                // Tablet
-                perPage: 1,
-                gap: "4vw"
-            },
-            767: {
-                // Mobile Landscape
-                perPage: 1,
-                gap: "4vw"
-            },
-            479: {
-                // Mobile Portrait
-                perPage: 1,
-                gap: "4vw"
-            }
-        }
-    }).mount();
-}
-decoration_vendor();
 function slider2() {
     let splides = $(".slider2");
     for(let i = 0, splideLength = splides.length; i < splideLength; i++)new Splide(splides[i], {
