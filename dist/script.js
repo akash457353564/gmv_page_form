@@ -731,7 +731,7 @@ gmv_form2.addEventListener("submit", ()=>{
     send_otp2();
     document.querySelector(".sent_otp_to_txt").textContent = `We have sent OTP to ${user_mob2.value}`;
 });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////POP UP FORM ENDS///////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////SLIDER CODE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function venue_vendor() {
     let splides = $(".venue_vendor");
@@ -832,6 +832,27 @@ Array.from(document.querySelectorAll(".splide__arrow--next")).forEach((el)=>{
 });
 Array.from(document.querySelectorAll(".splide__arrow--prev")).forEach((el)=>{
     el.style.display = "none";
+});
+////////////////////////////////////////////////////////SLIDER CODE ENDS////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////TRUECALLER CODE////////////////////////////////////////////////////////
+const tc_btn = document.querySelector("#initiate_tc");
+const tc_popup = `truecallersdk://truesdk/web_verify?type=btmsheet
+&requestNonce=UNIQUE_REQUEST_ID
+&partnerKey=5V1HGe06f216d06454e89a202b0dcecf949c6
+&partnerName=Betterhalf Web Staging
+&lang=en
+&privacyUrl=LINK_TO_YOUR_PRIVACY_PAGE
+&termsUrl=LINK_TO_YOUR_TERMS_PAGE
+&loginPrefix=continue
+&loginSuffix=verifymobile
+&ctaPrefix=use
+&ctaColor=%23ff5b91
+&ctaTextColor=%23ffffff
+&btnShape=round
+&skipOption=later`;
+tc_btn.addEventListener("click", ()=>{
+    console.log("here");
+//window.location = tc_popup
 });
 
 },{}]},["dpgAG","6rimH"], "6rimH", "parcelRequiree7b8")
