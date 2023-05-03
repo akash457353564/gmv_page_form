@@ -5,8 +5,6 @@ let userPhone;
 
 
 
-
-
 const country_code = document.querySelector('#country_code')
 country_code.value = `+91`
 country_code.setAttribute('readonly', ' ')
@@ -374,26 +372,3 @@ Array.from(document.querySelectorAll('.splide__arrow--prev')).forEach((el) => {
 
 ////////////////////////////////////////////////////////SLIDER CODE ENDS////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////TRUECALLER CODE////////////////////////////////////////////////////////
-
-const tc_btn = document.querySelector('#initiate_tc');
-const tc_popup = `truecallersdk://truesdk/web_verify?type=btmsheet
-&requestNonce=UNIQUE_REQUEST_ID
-&partnerKey=5V1HGe06f216d06454e89a202b0dcecf949c6
-&partnerName=Betterhalf Web Staging
-&lang=en
-&privacyUrl=LINK_TO_YOUR_PRIVACY_PAGE
-&termsUrl=LINK_TO_YOUR_TERMS_PAGE
-&loginPrefix=continue
-&loginSuffix=verifymobile
-&ctaPrefix=use
-&ctaColor=%23ff5b91
-&ctaTextColor=%23ffffff
-&btnShape=round
-&skipOption=later`
-
-
-tc_btn.addEventListener('click', ()=>{
-    console.log('here')
-    //window.location = tc_popup
-})
