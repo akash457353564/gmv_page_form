@@ -627,6 +627,7 @@ gmv_form.addEventListener("submit", ()=>{
     otp_modal.style.display = "flex";
     send_otp();
     document.querySelector(".sent_otp_to_txt").textContent = `We have sent OTP to ${user_mob.value}`;
+    document.cookie = "formSubmitted=true";
 });
 let verify_otp_status;
 function callback(status) {
@@ -675,6 +676,20 @@ otp_sub_btn.addEventListener("click", (e)=>{
         }
     }, 1000);
 });
+///////////////SHOWING POP UP///////////////
+let options = {
+    threshold: 0.3
+};
+const observer = new IntersectionObserver((entries, observer)=>{
+    entries.forEach((entry)=>{
+        if (entry.isIntersecting == true) {
+            if (document.cookie.indexOf("formSubmitted=true") !== -1) document.querySelector(".pop_up-form-wrapper").style.display = "none";
+            else document.querySelector(".pop_up-form-wrapper").style.display = "flex";
+        }
+    });
+}, options);
+observer.observe(document.querySelector(".testimonial_block"));
+/////////////////SHOWING POP UP ENDS//////////////////////////
 /////////////////////////////////////////////////////////////////POP UP FORM/////////////////////////////////////////////////////////////////
 const country_code2 = document.querySelector("#country_code_2");
 country_code2.value = `+91`;
@@ -832,28 +847,8 @@ Array.from(document.querySelectorAll(".splide__arrow--next")).forEach((el)=>{
 });
 Array.from(document.querySelectorAll(".splide__arrow--prev")).forEach((el)=>{
     el.style.display = "none";
-});
-////////////////////////////////////////////////////////SLIDER CODE ENDS////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////TRUECALLER CODE////////////////////////////////////////////////////////
-const tc_btn = document.querySelector("#initiate_tc");
-const tc_popup = `truecallersdk://truesdk/web_verify?type=btmsheet
-&requestNonce=UNIQUE_REQUEST_ID
-&partnerKey=5V1HGe06f216d06454e89a202b0dcecf949c6
-&partnerName=Betterhalf Web Staging
-&lang=en
-&privacyUrl=LINK_TO_YOUR_PRIVACY_PAGE
-&termsUrl=LINK_TO_YOUR_TERMS_PAGE
-&loginPrefix=continue
-&loginSuffix=verifymobile
-&ctaPrefix=use
-&ctaColor=%23ff5b91
-&ctaTextColor=%23ffffff
-&btnShape=round
-&skipOption=later`;
-tc_btn.addEventListener("click", ()=>{
-    console.log("here");
-//window.location = tc_popup
-});
+}) ////////////////////////////////////////////////////////SLIDER CODE ENDS////////////////////////////////////////////////////////
+;
 
 },{}]},["dpgAG","6rimH"], "6rimH", "parcelRequiree7b8")
 

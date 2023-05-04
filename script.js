@@ -97,6 +97,7 @@ gmv_form.addEventListener('submit', () => {
     otp_modal.style.display = 'flex'
     send_otp()
     document.querySelector('.sent_otp_to_txt').textContent = `We have sent OTP to ${user_mob.value}`
+    document.cookie = "formSubmitted=true"
 })
 
 let verify_otp_status;
@@ -169,6 +170,30 @@ otp_sub_btn.addEventListener('click', (e) => {
 
     
 })
+
+
+///////////////SHOWING POP UP///////////////
+let options = {
+    threshold: 0.3,
+  };
+
+const observer = new IntersectionObserver((entries, observer)=>{
+    entries.forEach((entry)=>{
+        
+        if(entry.isIntersecting == true){
+            if(document.cookie.indexOf("formSubmitted=true") !== -1){
+                document.querySelector('.pop_up-form-wrapper').style.display = 'none'
+            } else {
+                document.querySelector('.pop_up-form-wrapper').style.display = 'flex'
+            }
+            
+        } 
+    })
+}, options)
+
+observer.observe(document.querySelector('.testimonial_block'))
+
+/////////////////SHOWING POP UP ENDS//////////////////////////
 
 /////////////////////////////////////////////////////////////////POP UP FORM/////////////////////////////////////////////////////////////////
 
