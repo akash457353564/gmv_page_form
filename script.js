@@ -187,6 +187,12 @@ const observer = new IntersectionObserver((entries, observer)=>{
                 document.querySelector('.pop_up-form-wrapper').style.display = 'flex'
             }
             
+            if(document.cookie.indexOf("popupFormSubmitted=true") !== -1){
+                document.querySelector('.pop_up-form-wrapper').style.display = 'none'
+            } else {
+                document.querySelector('.pop_up-form-wrapper').style.display = 'flex'
+            }
+
         } 
     })
 }, options)
@@ -265,6 +271,7 @@ gmv_form2.addEventListener('submit', () => {
     otp_modal.style.display = 'flex'
     send_otp2()
     document.querySelector('.sent_otp_to_txt').textContent = `We have sent OTP to ${user_mob2.value}`
+    document.cookie = "popupFormSubmitted=true"
 })
 
 
