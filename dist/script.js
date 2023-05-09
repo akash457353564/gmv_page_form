@@ -688,6 +688,7 @@ const observer = new IntersectionObserver((entries, observer)=>{
             else document.querySelector(".pop_up-form-wrapper").style.display = "flex";
             if (document.cookie.indexOf("popupFormSubmitted=true") !== -1) document.querySelector(".pop_up-form-wrapper").style.display = "none";
             else document.querySelector(".pop_up-form-wrapper").style.display = "flex";
+            observer.unobserve(entry.target);
         }
     });
 }, options);

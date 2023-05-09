@@ -193,7 +193,7 @@ const observer = new IntersectionObserver((entries, observer)=>{
             } else {
                 document.querySelector('.pop_up-form-wrapper').style.display = 'flex'
             }
-
+            observer.unobserve(entry.target)
         } 
     })
 }, options)
