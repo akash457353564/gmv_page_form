@@ -22,6 +22,7 @@ const submit_btn = document.querySelector('#form_submit_btn');
 
 const otp_modal = document.querySelector('.otp_modal_wrapper')
 const modal_close_btn = document.querySelector('.close_btn')
+const pop_up_form_close_btn = document.querySelector('.pop-up-form_close')
 const otp_field = document.querySelector('#otp_field')
 
 const otp_err = document.querySelector('#otp_err')
@@ -274,7 +275,9 @@ gmv_form2.addEventListener('submit', () => {
     document.cookie = "popupFormSubmitted=true"
 })
 
-
+pop_up_form_close_btn.addEventListener('click', ()=>{
+    document.querySelector('.pop_up-form-wrapper').style.display = 'none'
+})
 
 ///////////////////////////////////////////////////////////////////POP UP FORM ENDS///////////////////////////////////////////////////////////////
 
