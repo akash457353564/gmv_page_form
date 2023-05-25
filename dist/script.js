@@ -560,6 +560,7 @@ function hmrAccept(bundle, id) {
 let userName;
 let userWeddingDate;
 let userPhone;
+let userLocation;
 const country_code = document.querySelector("#country_code");
 country_code.value = `+91`;
 country_code.setAttribute("readonly", " ");
@@ -567,6 +568,7 @@ const gmv_form = document.querySelector("#gmv_v3");
 const user_name = document.querySelector("#name_field");
 const user_mob = document.querySelector("#mob_num");
 const wedding_date = document.querySelector("#wedding_date");
+const user_location = document.querySelector("#location");
 const name_err = document.querySelector("#name_err");
 const phn_err = document.querySelector("#phn_err");
 const submit_btn = document.querySelector("#form_submit_btn");
@@ -582,6 +584,7 @@ const succ_block = document.querySelector(".success_block");
 const final_name = document.querySelector("#final_name");
 const final_date = document.querySelector("#final_date");
 const final_num = document.querySelector("#final_num");
+const final_location = document.querySelector("#final_location");
 const final_submit_btn = document.querySelector("#final_form_submit");
 wedding_date.type = "date";
 user_name.addEventListener("input", ()=>{
@@ -606,6 +609,7 @@ submit_btn.addEventListener("click", (e)=>{
         userName = user_name.value;
         userWeddingDate = wedding_date.value;
         userPhone = user_mob.value;
+        userLocation = user_location.value;
     }
 });
 modal_close_btn.addEventListener("click", ()=>{
@@ -667,6 +671,7 @@ otp_sub_btn.addEventListener("click", (e)=>{
             final_name.value = userName;
             final_num.value = userPhone;
             final_date.value = userWeddingDate;
+            final_location.value = userLocation;
             final_submit_btn.click();
         } else if (otp_field.value && verify_otp_status != 200) {
             //console.log('IN !200',verify_otp_status)
@@ -703,6 +708,7 @@ const user_name2 = document.querySelector("#name_field_2");
 const user_mob2 = document.querySelector("#mob_num_2");
 const wedding_date2 = document.querySelector("#wedding_date_2");
 wedding_date2.type = "date";
+const user_location2 = document.querySelector("#location_2");
 const submit_btn2 = document.querySelector("#form_submit_btn_2");
 const name_err2 = document.querySelector("#name_err_2");
 const phn_err2 = document.querySelector("#phn_err_2");
@@ -729,6 +735,7 @@ submit_btn2.addEventListener("click", (e)=>{
         userName = user_name2.value;
         userWeddingDate = wedding_date2.value;
         userPhone = user_mob2.value;
+        userLocation = user_location2.value;
     }
 });
 const send_otp2 = function() {
