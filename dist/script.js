@@ -593,6 +593,39 @@ user_name.addEventListener("input", ()=>{
 user_mob.addEventListener("input", ()=>{
     phn_err.style.display = "none";
 });
+////////////////////LOCATION SUGGESTION/////////////////
+let get_location = function(id, childId) {
+    const cardContainerSearch = document.getElementById(id);
+    cardContainerSearch.innerHTML = "";
+    let request = new XMLHttpRequest();
+    let endPoint = new URL(`https://search.betterhalf.ai/search/city?charlist=${user_location.value}`);
+    let url = endPoint.toString();
+    request.open("GET", url, true);
+    request.onload = function() {
+        let suggestions = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) suggestions.result.forEach((suggestion)=>{
+            const style = document.getElementById(childId);
+            const cardSearch = style.cloneNode(true);
+            cardSearch.setAttribute("id", "");
+            cardSearch.style.display = "grid";
+            const search_suggestion = cardSearch.getElementsByClassName("suggestion_txt")[0];
+            search_suggestion.textContent = suggestion.city;
+            const state = cardSearch.getElementsByClassName("state")[0];
+            state.textContent = suggestion.state;
+            const country = cardSearch.getElementsByClassName("country")[0];
+            country.textContent = suggestion.country;
+            cardSearch.onclick = ()=>{
+                const location = `${suggestion.city}`;
+                user_location.value = location;
+                cardContainerSearch.innerHTML = "";
+            };
+            cardContainerSearch.appendChild(cardSearch);
+        });
+    };
+    request.send();
+};
+user_location.addEventListener("input", get_location.bind(event, "Cards-Container_search", "samplestyle_search"), false);
+////////////////////LOCATION SUGGESTION ENDS//////////////////////
 submit_btn.addEventListener("click", (e)=>{
     const alphabets = /^[a-zA-Z]+$/;
     if (!user_name.value) {
@@ -761,6 +794,38 @@ gmv_form2.addEventListener("submit", ()=>{
 pop_up_form_close_btn.addEventListener("click", ()=>{
     document.querySelector(".pop_up-form-wrapper").style.display = "none";
 });
+////////////LOCATION SUGGESTION FOR POPUP FORM/////////////////
+let get_location_2 = function(id, childId) {
+    const cardContainerSearch = document.getElementById(id);
+    cardContainerSearch.innerHTML = "";
+    let request = new XMLHttpRequest();
+    let endPoint = new URL(`https://search.betterhalf.ai/search/city?charlist=${user_location2.value}`);
+    let url = endPoint.toString();
+    request.open("GET", url, true);
+    request.onload = function() {
+        let suggestions = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) suggestions.result.forEach((suggestion)=>{
+            const style = document.getElementById(childId);
+            const cardSearch = style.cloneNode(true);
+            cardSearch.setAttribute("id", "");
+            cardSearch.style.display = "grid";
+            const search_suggestion = cardSearch.getElementsByClassName("suggestion_txt")[0];
+            search_suggestion.textContent = suggestion.city;
+            const state = cardSearch.getElementsByClassName("state")[0];
+            state.textContent = suggestion.state;
+            const country = cardSearch.getElementsByClassName("country")[0];
+            country.textContent = suggestion.country;
+            cardSearch.onclick = ()=>{
+                const location = `${suggestion.city}`;
+                user_location2.value = location;
+                cardContainerSearch.innerHTML = "";
+            };
+            cardContainerSearch.appendChild(cardSearch);
+        });
+    };
+    request.send();
+};
+user_location2.addEventListener("input", get_location_2.bind(event, "Cards-Container_search2", "samplestyle_search2"), false);
 ///////////////////////////////////////////////////////////////////POP UP FORM ENDS///////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////SLIDER CODE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function venue_vendor() {
