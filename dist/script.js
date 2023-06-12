@@ -650,9 +650,9 @@ modal_close_btn.addEventListener("click", ()=>{
 });
 const send_otp = function() {
     let data = JSON.stringify({
-        "isd_code": "91",
-        "mobile": `${Number(user_mob.value)}`,
-        "medium": "SMS"
+        isd_code: "91",
+        mobile: `${Number(user_mob.value)}`,
+        medium: "SMS"
     });
     let request = new XMLHttpRequest();
     let endPoint = new URL(`https://api.betterhalf.ai/v2/auth/otp/send/`);
@@ -673,9 +673,9 @@ function callback(status) {
 }
 let verify_otp = function(callback) {
     let data = JSON.stringify({
-        "mobile": `${Number(user_mob.value) || Number(user_mob2.value)}`,
-        "isd_code": "91",
-        "otp": `${Number(otp_field.value)}`
+        mobile: `${Number(user_mob.value) || Number(user_mob2.value)}`,
+        isd_code: "91",
+        otp: `${Number(otp_field.value)}`
     });
     let request = new XMLHttpRequest();
     let endPoint = new URL(`https://api.betterhalf.ai/v2/auth/wedding-store/otp/verify/`);
@@ -773,9 +773,9 @@ submit_btn2.addEventListener("click", (e)=>{
 });
 const send_otp2 = function() {
     let data = JSON.stringify({
-        "isd_code": "91",
-        "mobile": `${Number(user_mob2.value)}`,
-        "medium": "SMS"
+        isd_code: "91",
+        mobile: `${Number(user_mob2.value)}`,
+        medium: "SMS"
     });
     let request = new XMLHttpRequest();
     let endPoint = new URL(`https://api.betterhalf.ai/v2/auth/otp/send/`);
@@ -868,8 +868,8 @@ function venue_vendor() {
     }).mount();
 }
 venue_vendor();
-function slider2() {
-    let splides = $(".slider2");
+function wedding_success() {
+    let splides = $(".wedding_success");
     for(let i = 0, splideLength = splides.length; i < splideLength; i++)new Splide(splides[i], {
         // Desktop on down
         perPage: 2,
@@ -878,7 +878,7 @@ function slider2() {
         type: "loop",
         gap: "2em",
         arrows: false,
-        pagination: "slider",
+        pagination: false,
         speed: 600,
         dragAngleThreshold: 30,
         autoWidth: false,
@@ -907,7 +907,7 @@ function slider2() {
         }
     }).mount();
 }
-slider2();
+wedding_success();
 Array.from(document.querySelectorAll("#left-arrow")).forEach(function(el) {
     el.addEventListener("click", ()=>{
         Array.from(document.querySelectorAll(".splide__arrow--prev")).forEach((el)=>{
@@ -927,8 +927,7 @@ Array.from(document.querySelectorAll(".splide__arrow--next")).forEach((el)=>{
 });
 Array.from(document.querySelectorAll(".splide__arrow--prev")).forEach((el)=>{
     el.style.display = "none";
-}) ////////////////////////////////////////////////////////SLIDER CODE ENDS////////////////////////////////////////////////////////
-;
+}); ////////////////////////////////////////////////////////SLIDER CODE ENDS////////////////////////////////////////////////////////
 
 },{}]},["dpgAG","6rimH"], "6rimH", "parcelRequiree7b8")
 
