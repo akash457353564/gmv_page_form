@@ -895,6 +895,72 @@ Array.from(document.querySelectorAll(".splide__arrow--next")).forEach((el)=>{
 Array.from(document.querySelectorAll(".splide__arrow--prev")).forEach((el)=>{
     el.style.display = "none";
 }); ////////////////////////////////////////////////////////SLIDER CODE ENDS////////////////////////////////////////////////////////
+ //////////////////SEND OTP FUNCTION USING fetch()//////////////////
+ /*
+const validating_otp_block = document.querySelector(".validating_block");
+const success_block = document.querySelector(".success_block");
+const otp_err_warning = document.querySelector(".otp_err");
+
+const sub_btn = document.querySelector(".otp_submit_btn");
+
+let data_to_send_otp = {
+  isd_code: "91",
+  mobile: `2222222222`,
+  medium: "SMS",
+};
+
+const otp_send = async function () {
+  const res = await fetch(`https://api.betterhalf.ai/v2/auth/otp/send/`, {
+    method: "POST",
+    body: JSON.stringify(data_to_send_otp),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await res.json();
+
+  console.log(data);
+};
+
+otp_send();
+
+let data_to_verify_otp = {
+  mobile: `2222222222`,
+  isd_code: `91`,
+  otp: `2828`,
+};
+
+const otp_verify = async function () {
+  const res = await fetch(
+    `https://api.betterhalf.ai/v2/auth/wedding-store/otp/verify/`,
+    {
+      method: "POST",
+      body: JSON.stringify(data_to_verify_otp),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  console.log(`Verifying OTP...`);
+  validating_otp_block.style.display = "flex";
+
+  const data = await res.json();
+  if (res.status == 200) {
+    console.log(data);
+    success_block.style.display = "flex";
+  } else {
+    console.log(res.status, `Wrong OTP entered`);
+    validating_otp_block.style.display = "none";
+    otp_err_warning.style.display = "flex";
+  }
+};
+
+sub_btn.addEventListener("click", (e) => {
+  e.preventDefault();
+  otp_verify();
+});
+*/ 
 
 },{}]},["dpgAG","6rimH"], "6rimH", "parcelRequiree7b8")
 
