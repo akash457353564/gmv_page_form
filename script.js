@@ -41,6 +41,13 @@ const final_submit_btn = document.querySelector("#final_form_submit");
 
 wedding_date.type = "date";
 
+const today = new Date();
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, "0");
+const day = String(today.getDate()).padStart(2, "0");
+const minDate = `${year}-${month}-${day}`;
+wedding_date.min = minDate;
+
 user_name.addEventListener("input", () => {
   name_err.style.display = "none";
 });
@@ -208,6 +215,7 @@ const user_name2 = document.querySelector("#name_field_2");
 const user_mob2 = document.querySelector("#mob_num_2");
 const wedding_date2 = document.querySelector("#wedding_date_2");
 wedding_date2.type = "date";
+wedding_date2.min = minDate;
 const user_location2 = document.querySelector("#location_2");
 
 const submit_btn2 = document.querySelector("#form_submit_btn_2");
