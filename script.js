@@ -2,6 +2,7 @@ let userName;
 let userWeddingDate;
 let userPhone;
 let userLocation;
+let otherService;
 
 const country_code = document.querySelector("#country_code");
 country_code.value = `+91`;
@@ -36,6 +37,7 @@ const final_name = document.querySelector("#final_name");
 const final_date = document.querySelector("#final_date");
 const final_num = document.querySelector("#final_num");
 const final_location = document.querySelector("#final_location");
+const other_service_final = document.querySelector("#final_other_service");
 
 const final_submit_btn = document.querySelector("#final_form_submit");
 
@@ -82,6 +84,16 @@ submit_btn.addEventListener("click", (e) => {
     userWeddingDate = wedding_date.value;
     userPhone = user_mob.value;
     userLocation = user_location.value;
+    //Assign chosen value of other service to otherService variable
+    if (document.querySelector("#photography").checked) {
+      otherService = "Photography";
+    } else if (document.querySelector("#makeup").checked) {
+      otherService = "Makeup";
+    } else if (document.querySelector("#mehendi").checked) {
+      otherService = "Mehendi";
+    } else if (document.querySelector("#decor").checked) {
+      otherService = "Decor";
+    }
   }
 });
 
@@ -163,6 +175,7 @@ otp_sub_btn.addEventListener("click", (e) => {
       final_num.value = userPhone;
       final_date.value = userWeddingDate;
       final_location.value = userLocation;
+      other_service_final.value = otherService;
       final_submit_btn.click();
     } else if (otp_field.value && verify_otp_status != 200) {
       //console.log('IN !200',verify_otp_status)
@@ -258,6 +271,16 @@ submit_btn2.addEventListener("click", (e) => {
     userWeddingDate = wedding_date2.value;
     userPhone = user_mob2.value;
     userLocation = user_location2.value;
+    //Assign chosen value of other service to otherService variable
+    if (document.querySelector("#photography_2").checked) {
+      otherService = "Photography";
+    } else if (document.querySelector("#makeup_2").checked) {
+      otherService = "Makeup";
+    } else if (document.querySelector("#mehendi_2").checked) {
+      otherService = "Mehendi";
+    } else if (document.querySelector("#decor_2").checked) {
+      otherService = "Decor";
+    }
   }
 });
 
