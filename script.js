@@ -58,6 +58,23 @@ user_mob.addEventListener("input", () => {
   phn_err.style.display = "none";
 });
 
+const other_services = [];
+let checked_items;
+let unique_checked_items;
+
+document.querySelector("#service_wrapper").addEventListener("click", (e) => {
+  if (e.target.type == "checkbox") {
+    if (e.target.checked) {
+      other_services.push(e.target);
+    }
+  }
+
+  checked_items = other_services.filter(function (el) {
+    return el.checked == true;
+  });
+  unique_checked_items = [...new Set(checked_items)];
+});
+
 submit_btn.addEventListener("click", (e) => {
   const alphabets = /^[a-zA-Z]+$/;
   if (!user_name.value) {
@@ -85,15 +102,10 @@ submit_btn.addEventListener("click", (e) => {
     userPhone = user_mob.value;
     userLocation = user_location.value;
     //Assign chosen value of other service to otherService variable
-    if (document.querySelector("#photography").checked) {
-      otherService = "Photography";
-    } else if (document.querySelector("#makeup").checked) {
-      otherService = "Makeup";
-    } else if (document.querySelector("#mehendi").checked) {
-      otherService = "Mehendi";
-    } else if (document.querySelector("#decor").checked) {
-      otherService = "Decor";
-    }
+
+    otherService = unique_checked_items.map(function (el) {
+      return el.parentNode.textContent;
+    });
   }
 });
 
@@ -244,6 +256,23 @@ user_mob2.addEventListener("input", () => {
   phn_err2.style.display = "none";
 });
 
+const other_services_2 = [];
+let checked_items_2;
+let unique_checked_items_2;
+
+document.querySelector("#service_wrapper_2").addEventListener("click", (e) => {
+  if (e.target.type == "checkbox") {
+    if (e.target.checked) {
+      other_services_2.push(e.target);
+    }
+  }
+
+  checked_items_2 = other_services_2.filter(function (el) {
+    return el.checked == true;
+  });
+  unique_checked_items_2 = [...new Set(checked_items_2)];
+});
+
 submit_btn2.addEventListener("click", (e) => {
   console.log("here");
   const alphabets = /^[a-zA-Z]+$/;
@@ -272,15 +301,9 @@ submit_btn2.addEventListener("click", (e) => {
     userPhone = user_mob2.value;
     userLocation = user_location2.value;
     //Assign chosen value of other service to otherService variable
-    if (document.querySelector("#photography_2").checked) {
-      otherService = "Photography";
-    } else if (document.querySelector("#makeup_2").checked) {
-      otherService = "Makeup";
-    } else if (document.querySelector("#mehendi_2").checked) {
-      otherService = "Mehendi";
-    } else if (document.querySelector("#decor_2").checked) {
-      otherService = "Decor";
-    }
+    otherService = unique_checked_items_2.map(function (el) {
+      return el.parentNode.textContent;
+    });
   }
 });
 
