@@ -17,6 +17,8 @@ const user_location = document.querySelector("#location");
 
 const name_err = document.querySelector("#name_err");
 const phn_err = document.querySelector("#phn_err");
+const loc_err = document.querySelector("#loc_err");
+const date_err = document.querySelector("#date_err");
 
 const submit_btn = document.querySelector("#form_submit_btn");
 
@@ -58,22 +60,30 @@ user_mob.addEventListener("input", () => {
   phn_err.style.display = "none";
 });
 
-const other_services = [];
-let checked_items;
-let unique_checked_items;
-
-document.querySelector("#service_wrapper").addEventListener("click", (e) => {
-  if (e.target.type == "checkbox") {
-    if (e.target.checked) {
-      other_services.push(e.target);
-    }
-  }
-
-  checked_items = other_services.filter(function (el) {
-    return el.checked == true;
-  });
-  unique_checked_items = [...new Set(checked_items)];
+user_location.addEventListener("input", () => {
+  loc_err.style.display = "none";
 });
+
+wedding_date.addEventListener("input", () => {
+  date_err.style.display = "none";
+});
+
+// const other_services = [];
+// let checked_items;
+// let unique_checked_items;
+
+// document.querySelector("#service_wrapper").addEventListener("click", (e) => {
+//   if (e.target.type == "checkbox") {
+//     if (e.target.checked) {
+//       other_services.push(e.target);
+//     }
+//   }
+
+//   checked_items = other_services.filter(function (el) {
+//     return el.checked == true;
+//   });
+//   unique_checked_items = [...new Set(checked_items)];
+// });
 
 submit_btn.addEventListener("click", (e) => {
   const alphabets = /^[a-zA-Z]+$/;
@@ -96,12 +106,17 @@ submit_btn.addEventListener("click", (e) => {
     e.preventDefault();
     phn_err.style.display = "flex";
     phn_err.textContent = "Please enter a valid phone number";
+  } else if (!user_location.value) {
+    e.preventDefault();
+    loc_err.style.display = "flex";
+  } else if (!wedding_date.value) {
+    e.preventDefault();
+    date_err.style.display = "flex";
   } else {
     userName = user_name.value;
     userWeddingDate = wedding_date.value;
     userPhone = user_mob.value;
     userLocation = user_location.value;
-    //Assign chosen value of other service to otherService variable
 
     otherService = unique_checked_items.map(function (el) {
       return el.parentNode.textContent;
@@ -201,6 +216,7 @@ otp_sub_btn.addEventListener("click", (e) => {
 });
 
 ///////////////SHOWING POP UP///////////////
+/*
 let options = {
   threshold: 0.3,
 };
@@ -224,12 +240,13 @@ const observer = new IntersectionObserver((entries, observer) => {
   });
 }, options);
 
-observer.observe(document.querySelector(".testimonial_block"));
+//observer.observe(document.querySelector(".testimonial_block"));
+*/
 
 /////////////////SHOWING POP UP ENDS//////////////////////////
 
 /////////////////////////////////////////////////////////////////POP UP FORM/////////////////////////////////////////////////////////////////
-
+/*
 const country_code2 = document.querySelector("#country_code_2");
 country_code2.value = `+91`;
 country_code2.setAttribute("readonly", " ");
@@ -390,11 +407,11 @@ user_location2.addEventListener(
   get_location_2.bind(event, "Cards-Container_search2", "samplestyle_search2"),
   false
 );
-
+*/
 ///////////////////////////////////////////////////////////////////POP UP FORM ENDS///////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////SLIDER CODE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
 function venue_vendor() {
   let splides = $(".venue_vendor");
   for (let i = 0, splideLength = splides.length; i < splideLength; i++) {
@@ -508,7 +525,7 @@ Array.from(document.querySelectorAll(".splide__arrow--next")).forEach((el) => {
 Array.from(document.querySelectorAll(".splide__arrow--prev")).forEach((el) => {
   el.style.display = "none";
 });
-
+*/
 ////////////////////////////////////////////////////////SLIDER CODE ENDS////////////////////////////////////////////////////////
 
 //////////////////SEND OTP FUNCTION USING fetch()//////////////////
