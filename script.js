@@ -2,7 +2,7 @@ let userName;
 let userWeddingDate;
 let userPhone;
 let userLocation;
-let otherService;
+//let otherService;
 
 const country_code = document.querySelector("#country_code");
 country_code.value = `+91`;
@@ -39,18 +39,18 @@ const final_name = document.querySelector("#final_name");
 const final_date = document.querySelector("#final_date");
 const final_num = document.querySelector("#final_num");
 const final_location = document.querySelector("#final_location");
-const other_service_final = document.querySelector("#final_other_service");
+//const other_service_final = document.querySelector("#final_other_service");
 
 const final_submit_btn = document.querySelector("#final_form_submit");
 
-wedding_date.type = "date";
+//wedding_date.type = "date";
 
-const today = new Date();
-const year = today.getFullYear();
-const month = String(today.getMonth() + 1).padStart(2, "0");
-const day = String(today.getDate()).padStart(2, "0");
-const minDate = `${year}-${month}-${day}`;
-wedding_date.min = minDate;
+// const today = new Date();
+// const year = today.getFullYear();
+// const month = String(today.getMonth() + 1).padStart(2, "0");
+// const day = String(today.getDate()).padStart(2, "0");
+// const minDate = `${year}-${month}-${day}`;
+// wedding_date.min = minDate;
 
 user_name.addEventListener("input", () => {
   name_err.style.display = "none";
@@ -118,9 +118,9 @@ submit_btn.addEventListener("click", (e) => {
     userPhone = user_mob.value;
     userLocation = user_location.value;
 
-    otherService = unique_checked_items.map(function (el) {
-      return el.parentNode.textContent;
-    });
+    // otherService = unique_checked_items.map(function (el) {
+    //   return el.parentNode.textContent;
+    // });
   }
 });
 
@@ -202,7 +202,7 @@ otp_sub_btn.addEventListener("click", (e) => {
       final_num.value = userPhone;
       final_date.value = userWeddingDate;
       final_location.value = userLocation;
-      other_service_final.value = otherService;
+      //other_service_final.value = otherService;
       final_submit_btn.click();
     } else if (otp_field.value && verify_otp_status != 200) {
       //console.log('IN !200',verify_otp_status)
