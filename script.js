@@ -585,7 +585,7 @@ const otp_verify = async function () {
   } else {
     console.log(res.status, `Wrong OTP entered`);
     validating_otp_block.style.display = "none";
-    otp_err_warning.style.display = "flex";
+    z_warning.style.display = "flex";
   }
 };
 
