@@ -109,9 +109,6 @@ submit_btn.addEventListener("click", (e) => {
   } else if (!user_location.value) {
     e.preventDefault();
     loc_err.style.display = "flex";
-  } else if (!wedding_date.value) {
-    e.preventDefault();
-    date_err.style.display = "flex";
   } else {
     userName = user_name.value;
     userWeddingDate = wedding_date.value;
