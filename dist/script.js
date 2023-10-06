@@ -606,9 +606,9 @@ user_mob.addEventListener("input", ()=>{
 user_location.addEventListener("input", ()=>{
     loc_err.style.display = "none";
 });
-wedding_date.addEventListener("input", ()=>{
-    date_err.style.display = "none";
-});
+// wedding_date.addEventListener("input", () => {
+//   date_err.style.display = "none";
+// });
 // const other_services = [];
 // let checked_items;
 // let unique_checked_items;
@@ -640,7 +640,7 @@ submit_btn.addEventListener("click", (e)=>{
         loc_err.style.display = "flex";
     } else {
         userName = user_name.value;
-        userWeddingDate = wedding_date.value;
+        //userWeddingDate = wedding_date.value;
         userPhone = user_mob.value;
         userLocation = user_location.value;
     // otherService = unique_checked_items.map(function (el) {
@@ -701,6 +701,7 @@ otp_sub_btn.addEventListener("click", (e)=>{
     setTimeout(function() {
         if (otp_field.value && verify_otp_status == 200) {
             //console.log('IN 200:', verify_otp_status)
+            window.location.replace("https://c5j1i314bt7.typeform.com/to/hBMrbLgG");
             otp_form_block.style.display = "none";
             validating_otp_block.style.display = "none";
             succ_block.style.display = "flex";
