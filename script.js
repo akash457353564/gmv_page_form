@@ -205,8 +205,7 @@ otp_sub_btn.addEventListener("click", (e) => {
       //console.log('IN 200:', verify_otp_status)
 
       //REDIRECTION TO TYPEFORM PAGE
-      const redirected_to_url =
-        "https://www.betterhalf.ai/lp/venue-test-page-typeform";
+      const redirected_to_url = `https://www.betterhalf.ai/lp/venue-test-page-typeform?utm_content=${user_mob.value}`;
       const redirect_with_utm = new URL(redirected_to_url);
       for (const key in utm_params) {
         redirect_with_utm.searchParams.set(key, utm_params[key]);
