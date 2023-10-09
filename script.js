@@ -191,7 +191,11 @@ otp_sub_btn.addEventListener("click", (e) => {
   setTimeout(function () {
     if (otp_field.value && verify_otp_status == 200) {
       //console.log('IN 200:', verify_otp_status)
-      window.location.replace("https://c5j1i314bt7.typeform.com/to/hBMrbLgG");
+
+      //REDIRECTION TO TYPEFORM PAGE
+      window.location.replace(
+        "https://betterhalf.ai/lp/venue-test-page-typeform"
+      );
 
       otp_form_block.style.display = "none";
       validating_otp_block.style.display = "none";
