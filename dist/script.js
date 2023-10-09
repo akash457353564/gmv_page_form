@@ -648,6 +648,13 @@ submit_btn.addEventListener("click", (e)=>{
     // });
     }
 });
+//////////////GET UTM PARAMS OF FIRST PAGE//////////////
+const initial_page_url = document.location.href;
+const url_params = new URL(initial_page_url);
+const utm_params = {};
+url_params.searchParams.forEach(function(value, key) {
+    if (key.startsWith("utm_")) utm_params[key] = value;
+});
 modal_close_btn.addEventListener("click", ()=>{
     otp_modal.style.display = "none";
 });
@@ -702,7 +709,10 @@ otp_sub_btn.addEventListener("click", (e)=>{
         if (otp_field.value && verify_otp_status == 200) {
             //console.log('IN 200:', verify_otp_status)
             //REDIRECTION TO TYPEFORM PAGE
-            window.location.replace("https://betterhalf-ai-landing-page.webflow.io/lp/venue-test-page-typeform");
+            const redirected_to_url = "https://www.betterhalf.ai/lp/venue-test-page-typeform";
+            const redirect_with_utm = new URL(redirected_to_url);
+            for(const key in utm_params)redirect_with_utm.searchParams.set(key, utm_params[key]);
+            window.location.href = redirect_with_utm.href;
             otp_form_block.style.display = "none";
             validating_otp_block.style.display = "none";
             succ_block.style.display = "flex";
