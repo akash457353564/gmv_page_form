@@ -4,6 +4,10 @@ let userPhone;
 let userLocation;
 //let otherService;
 
+let isEnabled = true;
+
+const resend_otp_btn = document.querySelector("#resend_btn");
+
 const country_code = document.querySelector("#country_code");
 country_code.value = `+91`;
 country_code.setAttribute("readonly", " ");
@@ -133,6 +137,8 @@ url_params.searchParams.forEach(function (value, key) {
   }
 });
 
+///////////////////////////////////////////////////
+
 modal_close_btn.addEventListener("click", () => {
   otp_modal.style.display = "none";
 });
@@ -156,6 +162,8 @@ const send_otp = function () {
 gmv_form.addEventListener("submit", () => {
   otp_modal.style.display = "flex";
   send_otp();
+  enableButtonAfterDelay();
+  start_cd();
   document.querySelector(
     ".sent_otp_to_txt"
   ).textContent = `We have sent OTP to ${user_mob.value}`;
@@ -231,6 +239,46 @@ otp_sub_btn.addEventListener("click", (e) => {
       otp_err.style.display = "flex";
     }
   }, 1000);
+});
+
+////////////START 30 SEC COUNTDOWN/////////////
+
+function start_cd() {
+  let duration = 29;
+  const cd_timer = setInterval(function () {
+    cd_txt.innerHTML = `Resend OTP in ${duration} seconds`;
+    duration--;
+
+    if (duration < 0) {
+      clearInterval(cd_timer);
+      cd_txt.innerHTML = `Resend OTP`;
+    }
+  }, 1000);
+}
+
+//////////////ENABLE AND DISABLE RESEND OTP BUTTON//////////////////
+
+function enableButtonAfterDelay() {
+  setTimeout(() => {
+    isEnabled = true;
+    resend_otp_btn.disabled = false;
+    resend_otp_btn.style.display = "flex";
+  }, 30000);
+}
+
+/////////////RESEND OTP/////////////////////
+
+resend_otp_btn.addEventListener("click", () => {
+  if (isEnabled) {
+    resend_otp_btn.disabled = true;
+    resend_otp_btn.style.display = "none";
+
+    isEnabled = false;
+    send_otp();
+    enableButtonAfterDelay();
+    //console.log("Here");
+    start_cd();
+  }
 });
 
 ///////////////SHOWING POP UP///////////////
