@@ -592,6 +592,10 @@ const final_num = document.querySelector("#final_num");
 const final_location = document.querySelector("#final_location");
 //const other_service_final = document.querySelector("#final_other_service");
 const final_submit_btn = document.querySelector("#final_form_submit");
+const floating_btn = document.querySelector(".floating_btn");
+floating_btn.addEventListener("click", ()=>{
+    submit_btn.click();
+});
 //wedding_date.type = "date";
 // const today = new Date();
 // const year = today.getFullYear();
